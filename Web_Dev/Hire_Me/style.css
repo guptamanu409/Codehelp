@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --red-color: red;
+}
+
+.container {
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+button{
+    padding: 10px;
+    background-color: var(--red-color,pink);
+    color: white;
+    box-shadow: 2px 2px 3px black;
+    /* transition: all 1s ease; */
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;    
+}
+
+button::before{
+    content: "";
+    position: absolute;
+    background-color: hotpink;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: all 1s;
+    z-index: -1;
+}
+
+button:hover::before {
+    transform: scaleX(1);
+    border-radius: 5px;
+    
+
+}
+
