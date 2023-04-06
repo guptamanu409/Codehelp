@@ -1,0 +1,39 @@
+*{
+    box-sizing: border-box;
+}
+
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+p{
+    font-size: xx-large;
+}
+
+.counter{
+    display: flex;
+}
+
+
+
+button{
+    border: none;
+    font-size: x-large;
+    padding: 0.2rem 2.5rem;
+    
+}
+
+.plus{
+    border-right: 1px dotted black;
+}
+
+.minus{
+    border-left: 1px dotted black;
+}
