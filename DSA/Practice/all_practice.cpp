@@ -71,7 +71,9 @@ bool book_allocate(int arr[], int n, int allocate, int m){
     int count = 1;
 
     for(int i = 0; i<n; i++){
-        if(sum+arr[i]>allocate){
+        if(arr[i]>allocate) return false; //Not possible to allocate this book at all
+
+        if(sum+arr[i]>allocate){ //Allocate the books to the student
             count++;
             sum = arr[i];
             if(count>m) return false;
@@ -81,12 +83,46 @@ bool book_allocate(int arr[], int n, int allocate, int m){
     return true;
 }
 
+bool painters_partition(int arr[], int n, int time, int painters){
+    int c = 1;
+    int sum = 0;
+
+    for(int i = 0; i<n; i++){
+        if(arr[i]>time) return false; // Not possible to paint the board in given time
+
+        if(arr[i]+sum>time){ //Allocate the boards to the painter
+            c++;
+            sum = arr[i];
+            if(c>painters) return false;
+        }
+
+        else sum+=arr[i];
+    }
+    return true;
+}
+
+bool aggressive_cows(int arr[], int gap, int n, int cows){
+    int c = 1;
+    int placed = arr[0];
+
+    for(int i = 1; i<n; i++){
+        if(arr[i]-placed>=gap){
+            c++;
+            placed = arr[i];
+            if(c==cows) return true;
+        }
+    }
+    return false;
+}
+
+
+
 int main(){
 
     ios::sync_with_stdio(false); //Removes sync between printf and cout
     cin.tie(NULL); //Removes sync between cin and cout
 
-    int arr[] = {12,34,67,90};
+    int arr[] = {10,1,2,7,5};
     int n = sizeof(arr)/sizeof(int);
 
     //cout<<b_s(arr,n,10);
@@ -95,19 +131,48 @@ int main(){
 
     //cout<<any_peak(arr,n);
 
-    int max_pages = accumulate(arr,arr+n,0);
+    //int max_pages = accumulate(arr,arr+n,0);
+
+    //int max_time = accumulate(arr,arr+n,0);
+
+
+    sort(arr,arr+n);
+    int max_gap = arr[n-1]-arr[0];
     int ans = 0;
 
     int s = 0;
-    int e = max_pages;
+    int e = max_gap;
 
     int mid = s+(e-s)/2;
+    // while(s<=e){
+    //     // if(book_allocate(arr,n,mid,3)){
+    //     //     ans = mid;
+    //     //     e = mid - 1;
+    //     // }
+
+    //     // if(painters_partition(arr,n,mid,3)){
+    //     //     ans = mid;
+    //     //     e = mid - 1;
+    //     // }
+
+    //     else s = mid + 1;
+
+    //     mid = s+(e-s)/2;
+    // }
+
+    //Aggressive Cows
     while(s<=e){
-        if(book_allocate(arr,n,mid,2)){
+        if(aggressive_cows(arr,mid,n,3)){
             ans = mid;
-            e = mid - 1;
+            s = mid + 1;
         }
-        else s = mid + 1;
+
+        // if(painters_partition(arr,n,mid,3)){
+        //     ans = mid;
+        //     e = mid - 1;
+        // }
+
+        else e = mid - 1;
 
         mid = s+(e-s)/2;
     }
