@@ -36,5 +36,33 @@ int main(){
 	// 	cout<<"Not Prime"<<endl;	
 	// }
 
+
+    // int x = 5,y;
+    // y = ++x * ++x;
+    // cout<<x<<" "<<y<<endl;
+
+    // y = (x++) * (x++);
+    // cout<<x<<" "<<y<<endl;
+
+    
+    
+    
+    //cout<<-7+1;
+    
+
+    // cout<<(~-4);
+    // cout<<(!0);
+
+    //cout<<(int)log10(7789);
+
+    vector<int>temp;
+
+    for(int i = 1; i<=10; i++)temp.push_back(i);
+
+    vector<int>:: iterator res;
+    res = max_element(temp.begin(),temp.end());
+    if(res!=temp.end()) cout<<"hai ismein";
+    *res = 0;
+    cout<<*res;
     return 0;
 }
