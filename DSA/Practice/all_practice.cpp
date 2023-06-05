@@ -176,7 +176,12 @@ int main(){
 
         mid = s+(e-s)/2;
     }
-    cout<<ans;
+    //cout<<ans;
+
+    unordered_map<char,string>mp;
+    mp.insert({'2',"abc"});
+    cout<<mp['2'];
+
 
     return 0;
 }
